@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  longitude,: MyString
+  latitude,: MyString
+  address,: MyString
+  price: 
+  property_name,: MyString
+  trip_id: 1
+
+two:
+  longitude,: MyString
+  latitude,: MyString
+  address,: MyString
+  price: 
+  property_name,: MyString
+  trip_id: 1

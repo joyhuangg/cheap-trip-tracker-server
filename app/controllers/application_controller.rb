@@ -1,10 +1,9 @@
-require './.key.rb'
+# require './.key.rb'
 
 class ApplicationController < ActionController::API
   before_action :authorized
 
   def encode_token(payload)
-    puts(key)
     JWT.encode(payload, 'my_secret')
   end
 

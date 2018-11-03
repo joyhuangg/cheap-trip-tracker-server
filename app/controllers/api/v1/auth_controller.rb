@@ -14,11 +14,23 @@ class Api::V1::AuthController < ApplicationController
     end
   end
 
+  def show
+
+    token = request.headers["Authorization"]
+    user = User.find_by(id: decoded_token[0]["user_id"])
+
+    if user
+      render json: { user: UserSerializer.new(@user), jwt: token }, status: :accepted
+    else
+      render json: {error: 'Invalid Token'}, status: 401
+    end
+  end
+
   private
 
   def user_login_params
-    # params { user: {username: 'Chandler Bing', password: 'hi' } }
     params.require(:auth).permit(:email, :password)
+    # params.permit(:email, :password, :auth)
   end
 
 end

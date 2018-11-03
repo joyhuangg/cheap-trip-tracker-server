@@ -1,3 +1,4 @@
 class Hotel < ApplicationRecord
-  belongs_to :trip
+  has_many :trip_hotels
+  has_many :trips, through: :trip_hotels
 end

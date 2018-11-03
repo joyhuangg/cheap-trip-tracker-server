@@ -1,3 +1,4 @@
 class Restaurant < ApplicationRecord
-  belongs_to :trip
+  has_many :trip_restaurants
+  has_many :trips, through: :trip_restaurants
 end

@@ -6,7 +6,7 @@ class CreateHotels < ActiveRecord::Migration[5.2]
       t.string :address
       t.float :price
       t.string :property_name
-      t.integer :trip_id
+
 
       t.timestamps
     end

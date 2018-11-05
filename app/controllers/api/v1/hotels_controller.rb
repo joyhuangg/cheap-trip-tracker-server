@@ -9,8 +9,7 @@ class Api::V1::HotelsController < ApplicationController
   def create
      @hotel = Hotel.find_or_create_by(hotel_params)
      if @hotel.save
-       @token = encode_token(hotel_id: @hotel.id)
-       render json: {hotel: HotelSerializer.new(@hotel)}, status: :created
+       render json: HotelSerializer.new(@hotel), status: :created
      else
        byebug
        render json: {error: 'Failed to create hotel'}, status: :not_acceptable

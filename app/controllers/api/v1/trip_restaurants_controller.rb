@@ -15,7 +15,7 @@ class Api::V1::TripRestaurantsController < ApplicationController
     def create
        @trip_restaurant = TripRestaurant.new(trip_restaurant_params)
        if @trip_restaurant.save
-         render json: {trip_restaurant:@trip_restaurant}, status: :created
+         render json: @trip_restaurant, status: :created
        else
          byebug
          render json: {error: 'Failed to create trip_restaurant'}, status: :not_acceptable

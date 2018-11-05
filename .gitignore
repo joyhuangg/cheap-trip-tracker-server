@@ -27,3 +27,5 @@
 /config/master.key
 
 .key.rb
+#Ignore secrets.yml file
+secrets.yml

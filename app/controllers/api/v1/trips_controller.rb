@@ -14,8 +14,7 @@ class Api::V1::TripsController < ApplicationController
   def create
      @trip = Trip.new(trip_params)
      if @trip.save
-       @token = encode_token(trip_id: @trip.id)
-       render json: {trip: TripSerializer.new(@trip), jwt:@token}, status: :created
+       render json: {trip: TripSerializer.new(@trip)}, status: :created
      else
        byebug
        render json: {error: 'Failed to create trip'}, status: :not_acceptable
@@ -29,6 +28,11 @@ class Api::V1::TripsController < ApplicationController
     else
       render json: { errors: @trip.errors.full_messages }, status: :unprocessible_entity
     end
+  end
+
+  def destroy
+    @trip.destroy
+    render status: :accepted
   end
 
   private

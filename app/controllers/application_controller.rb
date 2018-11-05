@@ -1,10 +1,12 @@
-# require './.key.rb'
+# require '../bin/key.rb'
+
 
 class ApplicationController < ActionController::API
+  # include Keys
   before_action :authorized
 
   def encode_token(payload)
-    JWT.encode(payload, 'my_secret')
+    JWT.encode(payload, ENV['KEY'])
   end
 
   def auth_header
@@ -17,8 +19,7 @@ class ApplicationController < ActionController::API
       token = auth_header
       # headers: { 'Authorization': '<token>' }
       begin
-        JWT.decode(token, 'my_secret', true, algorithm: 'HS256')
-        # JWT.decode => [{ "beef"=>"steak" }, { "alg"=>"HS256" }]
+        JWT.decode(token, ENV['KEY'], true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
       end
